@@ -1,44 +1,202 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfect Pizza</title>
-    <link rel="stylesheet" href="style.css">
-    </head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <!--CSS -->
+  <link rel="stylesheet" href="style.css">
+   <!-- Bootstrap CSS -->
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <title>Perfect Pizza</title>
+</head>
 <body>
-    <h1>Pizza Sales</h1>
-        <div class="pizzas">  
-            <div class="pizza Small_pizza">
-                <h2>Small Pizza</h2>
-                <img src="https://thumbs.dreamstime.com/b/piece-sliced-pepperoni-pizza-tomato-hot-melt-mozzarella-cheese-top-isolated-white-background-vector-illustration-137792349.jpg" alt="small pizza" width="130">
-                <h3>R40.00</h3>
-               <div> <ul><li>Small pizza with Ham, pineapple</li>
-            <li>The Pizza may be small but it is AAAmazing</li></ul> </div>
-            </div>
-<div class=" pizza Medium_pizza">
-    <h2>Medium Pizza</h2>
-    <img src="https://th.bing.com/th/id/OIP.x03fII_jV-jZPdLkL10LwwHaHa?pid=ImgDet&w=170&h=170&c=7" alt="meaty pizza" width="130">
-     <h3>R70.00</h3>
-     <div> <ul><li>Pizza with Ham</li>
-        <li>pizza with chicken meat</li>
-        <li>Marshroom Pizza</li>
-    </ul> </div>
+<div class="body">
+ <div class="bg"></div>
+<div class="bg bg2"></div>
+<div class="bg bg3"></div>
+
+  <div class="Bdesign" x-data="{small:0, medium:0, large:0, Grandtotal:0, get total(){ return (this.small * 40.00 + this.medium * 70.00 + this.large * 120.00 ).toFixed(2)}, GrandTotal:0, checkout: false, paid:''}">
+    <div>
+      <h1 class="section-header" style="text-align: center; color: #3904f8;"><strong>Mjoli's PIZZERA</strong></h1>
     </div>
-<div class="pizza Large_pizza">
-    <h2>Large Pizza</h2>
-    <img src="https://thumbs.dreamstime.com/b/print-simple-pepperoni-italian-pizza-cartoon-vector-illustration-design-slide-pizza-white-background-176361561.jpg" alt="large pizza" width="130">
-    <h3>R120.00</h3>
-    <div><ul>
-        <li>Large pizza with Something Meaty</li>
-        <li>pizza with humm,BBQ beef,steak</li>
-    </ul> </div>
-</div>
-</div>
-<div class="Contacts">
-   <h2>Contact details</h2>
-   Contact us at: 0735641431 info @ peferctpizza.co.za
+    
+   <div class="Mjoli">
+    <div class="cart" x-show="small != 0 || medium != 0 || large != 0">
+
+        <template x-if="small > 0">
+          <div class="small-cart">
+            Small:
+            <template x-if="!checkout">
+              <button class="Mdesign W Bdesign" @click="small++">+</button> </template
+            ><span x-text="small"></span
+            ><template x-if="!checkout"
+              ><button class="Mdesign Y Bdesign" @click="small--">-</button></template
+            >
+            <span>Price: R<span x-text="(small * 40.00).toFixed(2)"></span></span>
+          </div>
+        </template>
+  
+        <template x-if="medium > 0">
+          <div class="medium-cart">
+            medium:
+            <template x-if="!checkout">
+              <button class="Mdesign W Bdesign" @click="medium++">+</button> </template
+            ><span x-text="medium"></span
+            ><template x-if="!checkout"
+              ><button class="Mdesign Y Bdesign" @click="medium--">-</button></template
+            >
+            <span>Price: R<span x-text="(medium * 70.00).toFixed(2)"></span></span>
+          </div>
+        </template>
+  
+        <template x-if="large > 0">
+          <div class="large-cart">
+            Large:
+            <template x-if="!checkout">
+              <button class="Mdesign W Bdesign" @click="large++">+</button> </template
+            ><span x-text="large"></span
+            ><template x-if="!checkout"
+              ><button class="Mdesign Y Bdesign" @click="large--">-</button></template
+            >
+            <span>Price: R<span x-text="(large * 120.00).toFixed(2)"></span></span>
+          </div>
+          <span>Grand total: R<span x-text="((small * 40.00) + (medium * 70.00) + (large * 120.00)).toFixed(2)"></span></span>
+        </template>
+  
+        <!-- <template x-if="!checkout"
+        > <span>Grand total: R<span x-text="(large * 120.00).toFixed(2)"></span></span></template> -->
+  
+          <template x-if="!checkout">
+            <button class="Mjoli" @click="checkout=!checkout">Checkout</button>
+          </template>
+          <template x-if="checkout">
+            <label
+              >Amount received from customer: R<input
+                type="number"
+                min="0"
+                step="0.00"
+                x-model="paid"
+            /></label>
+          </template>
+          <template x-if="paid == total && checkout">
+              <!-- <br> -->
+            <span>
+              <div style="color: green">Enjoy your pizzas! </div>
+              <button class="Mdesign AW Bdesign" @click="small=0; medium=0; large=0; checkout=false;">
+                Complete Order
+              </button>
+            </span>
+          </template>
+          <template x-if="(parseInt(paid) < total && paid != total && checkout)">
+              <!-- <br> -->
+            <span>
+              <div style="border: 1px solid rgb(204, 3, 3); color: #e70909;" ><h2><strong>This is not enough money</strong></h2>
+                
+                         </div>
+                         <div style="color: rgb(69, 211, 3); border: 1px solid #3904f8;"><h2>You need for this item:</h2>
+                            <span
+                            x-text="(total - parseInt(paid) ).toFixed(2)"
+                          ></span>
+                         </div>
+              <button class="Mdesign AW Bdesign" @click="small=0; medium=0; large=0; checkout=false;">
+                <div style="color: #f10a0a;">
+
+                </div>
+                Exit-Cart
+              </button>
+            </span>
+          </template>
+          <template x-if="parseInt(paid) > total && checkout">
+            <span>
+              <div style="color: rgb(17, 238, 54)">
+                  <br>
+                  
+                Enjoy your pizzas, Here's your change: R<span
+                  x-text="(parseInt(paid) - total).toFixed(2)"
+                ></span>
+              </div>
+              <button class="Mjoli" @click="small=0; medium=0; large=0; checkout=false; paid=''"
+              >
+                Complete the Order
+              </button>
+            </span>
+          </template>
+  
+      </div>
+     
+  
+  <div class="container mt-5">
+        </div>
+      <div class="specials">
+        <div class="small">
+          <img src="https://s3-media0.fl.yelpcdn.com/bphoto/LMyCBFsv0r3ARJdovMcB3Q/l.jpg" alt="small pizza" width="330">
+          <h2>Small Pizza</h2>
+          <h3>R40.00</h3>
+          <ul>
+            <li>Small pizza with Ham, pineapple</li>
+            <li>The Pizza may be small but it is Amazing</li> 
+          </ul>
+  
+          <div>
+            <button class="Mjoli" @click="small++">BUY</button>
+          </div>
+  
+        </div>
+      </div>
+        <div class="medium">
+          <img src="https://th.bing.com/th/id/OIP.EYaO6b-n-qy8Px16wGSMMgHaJ4?pid=ImgDet&rs=1" alt="meaty pizza" width="330">
+          <h2>Medium Pizza</h2>
+          <h3>R70.00</h3>
+          <ul>
+            <li>Pizza with Ham</li>
+            <li>pizza with chicken meat</li>
+            <li>Marshroom Pizza</li>
+          </ul>
+  
+          <div>
+            <button class="Mjoli" @click="medium++">BUY</button>
+          </div>
+        </div>
+        <div class="large">
+          <img src="https://th.bing.com/th/id/R.13722e70434419e778a95b69013aea12?rik=1Qpq%2f%2fc8EOtCoA&riu=http%3a%2f%2f68.media.tumblr.com%2f17f5a78a5364cad85bf8d2cb518deb42%2ftumblr_ofvpgtPVy81rrvqt3o1_1280.jpg&ehk=wWiC4Slg66lX%2fjZ5hXtOqkMjTPVKkNEtBya%2bfqcnCSM%3d&risl=&pid=ImgRaw&r=0" alt="large pizza" width="330">
+          <h2>Large Pizza</h2>
+          <h3>R120.00</h3>
+          <ul>
+            <li>Large pizza with Something Meaty</li>
+            <li>pizza with humm,BBQ beef,steak</li>
+          </ul>
+          <div>
+            <button class="Mjoli" @click="large++">BUY</button>
+          </div>
+        </div>
+        
+  
+  
+   </div>
+
+   <div class="footer">
+    <div class="contact">
+      <strong>Contact/whatsapp us at:</strong>
+      0735641431
+
+      <strong>twitter</strong> @Mjoli's Pizzera
+      <div class="address">
+        Mjoli's crib
+        <br>
+        kwandela
+        <br>
+        Bizana
+        <br>
+        4800
+      </div>
+    </div>
+     </div>
+  </div>
+
+
+
+  <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.0/dist/alpine.min.js" defer></script>
 </div>
 </body>
 </html>

@@ -1,48 +1,44 @@
-body{
+.body{
     background-color: #526d6c;
-font-family: 'Times New Roman', Times, serif;
-}
-.pizza{
-    background-color: #f52536;
-    border:1px solid #0f0f0f;
+    font-family: 'Times New Roman', Times, serif;
+      border:1px solid #0f0f0f;
     padding: 1em;
     margin: 1em;
-    border-radius: 2em;
+    border-radius: 1em;
 }
 
-.Medium_pizza{
+.small{
     background-color: #8C4;
-    border:1px solid #0f0f0f;
     padding: 0.3em;
     margin: 0.5em;
-    border-radius: 2em;
+    border-radius: 1em;
     flex: 1;
 
 }
-.Large_pizza{
+.medium{
     background-color: red;
     border:1px solid #0f0f0f;
     padding: 1em;
     margin: 1em;
-    border-radius: 2em;
+    border-radius: 1em;
     flex: 1;
 }
-.Small_pizza{
+.large{
     background-color: #EAF525;
     border:1px solid #0f0f0f;
     padding: 1em;
     margin: 1em;
-    border-radius: 2em;
+    border-radius: 1em;
     flex: 1;
 }
-.Contacts{
-    background-color: #06f73a;
+.contact{
+    background-color: #3a06f7;
     border:1px solid #0f0f0f;
     padding: 1em;
     margin: 1em;
-    border-radius: 2em;
+    border-radius: 1em;
 }
-.center{
+.center {
     
 display: block;
 margin-left: auto;
@@ -50,7 +46,7 @@ margin-right: auto;
 width: 50%;
 }
 @media(min-width:960px){
-    .pizzas{
+    .Mjoli{
         display: flex;
     }
 }
