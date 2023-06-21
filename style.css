@@ -1,0 +1,56 @@
+body{
+    background-color: #526d6c;
+font-family: 'Times New Roman', Times, serif;
+}
+.pizza{
+    background-color: #f52536;
+    border:1px solid #0f0f0f;
+    padding: 1em;
+    margin: 1em;
+    border-radius: 2em;
+}
+
+.Medium_pizza{
+    background-color: #8C4;
+    border:1px solid #0f0f0f;
+    padding: 0.3em;
+    margin: 0.5em;
+    border-radius: 2em;
+    flex: 1;
+
+}
+.Large_pizza{
+    background-color: red;
+    border:1px solid #0f0f0f;
+    padding: 1em;
+    margin: 1em;
+    border-radius: 2em;
+    flex: 1;
+}
+.Small_pizza{
+    background-color: #EAF525;
+    border:1px solid #0f0f0f;
+    padding: 1em;
+    margin: 1em;
+    border-radius: 2em;
+    flex: 1;
+}
+.Contacts{
+    background-color: #06f73a;
+    border:1px solid #0f0f0f;
+    padding: 1em;
+    margin: 1em;
+    border-radius: 2em;
+}
+.center{
+    
+display: block;
+margin-left: auto;
+margin-right: auto;
+width: 50%;
+}
+@media(min-width:960px){
+    .pizzas{
+        display: flex;
+    }
+}
